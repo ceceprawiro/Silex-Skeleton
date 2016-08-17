@@ -1,0 +1,11 @@
+{% extends 'admin/layout.twig' %}
+
+{% block title %}Data{% endblock %}
+
+{% block content %}
+    {% if people is empty %}
+    <h1>Empty</h1>
+    {% else %}
+    <h1>Not Empty</h1>
+    {% endif %}
+{% endblock %}

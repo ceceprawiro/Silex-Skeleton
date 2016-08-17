@@ -1,0 +1,9 @@
+{% extends 'public/layout.twig' %}
+
+{% block content %}
+    {% if people is empty %}
+    <h1>Empty</h1>
+    {% else %}
+    <h1>Not Empty</h1>
+    {% endif %}
+{% endblock %}

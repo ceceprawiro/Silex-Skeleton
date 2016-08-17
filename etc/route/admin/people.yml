@@ -1,0 +1,9 @@
+admin.people.index:
+    path: /
+    defaults: { _controller: 'App\Controller\Admin\PeopleController::index' }
+
+admin.people.read:
+    path: /{id}
+    defaults: { _controller: 'App\Controller\Admin\PeopleController::read' }
+    requirements:
+        id: '\d+'

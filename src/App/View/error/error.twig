@@ -1,0 +1,12 @@
+{% extends 'error/layout.twig' %}
+
+{% block title %}{{ code }}{% endblock %}
+
+{% block content %}
+    <div class="absolute-center">
+        <div class="jumbotron">
+            <h1>{{ code }}</h1>
+            <p class="text-danger">Whoops, looks like something went wrong.</p>
+        </div>
+    </div>
+{% endblock %}

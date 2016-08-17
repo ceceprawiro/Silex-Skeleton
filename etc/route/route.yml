@@ -1,0 +1,15 @@
+home:
+    path: /
+    defaults: { _controller: 'App\Controller\PublicController::home' }
+
+login:
+    path: /login
+    defaults: { _controller: 'App\Controller\PublicController::login' }
+
+people:
+    prefix: /people
+    resource: people.yml
+
+admin:
+    prefix: /admin
+    resource: admin/route.yml

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <link href="{{ app['asset_path'] }}asset/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ app['asset_path'] }}asset/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ app['asset_path'] }}asset/vendor/open-sans/font.css" rel="stylesheet">
+    <link href="{{ app['asset_path'] }}asset/vendor/bootstrap3-ie10-viewport-bug-workaround/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="{{ app['asset_path'] }}asset/css/style.css" rel="stylesheet">
+     <!--[if lt IE 9]>
+    <script src="{{ app['asset_path'] }}asset/vendor/html5shiv/dist/html5shiv.min.js"></script>
+    <script src="{{ app['asset_path'] }}asset/vendor/html5shiv/dist/html5shiv-printshiv.min.js"></script>
+    <script src="{{ app['asset_path'] }}asset/vendor/respond.min.js"></script>
+    <![endif]-->
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    <div class="page-header">
+        <h1>{{ title }}</h1>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <script src="{{ app['asset_path'] }}asset/vendor/jquery.min.js"></script>
+    <script src="{{ app['asset_path'] }}asset/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{ app['asset_path'] }}asset/vendor/bootstrap3-ie10-viewport-bug-workaround/ie10-viewport-bug-workaround.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

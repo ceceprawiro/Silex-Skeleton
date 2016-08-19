@@ -1,45 +1,41 @@
 <?php namespace App;
 
-use Silex\Provider\MonologServiceProvider;
-use Silex\Provider\DoctrineServiceProvider;
-use Silex\Provider\RoutingServiceProvider;
+/*
 use Silex\Provider\FormServiceProvider;
 use Silex\Provider\CsrfServiceProvider;
-use Silex\Provider\HttpFragmentServiceProvider;
+use Silex\Provider\RoutingServiceProvider;
 use Silex\Provider\SwiftmailerServiceProvider;
 use Silex\Provider\SerializerServiceProvider;
-use Silex\Provider\ServiceControllerServiceProvider;
 use Silex\Provider\LocaleServiceProvider;
 use Silex\Provider\TranslationServiceProvider;
-
 use Silex\Provider\ValidatorServiceProvider;
+*/
+
+use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\HttpCacheServiceProvider;
-use Silex\Provider\VarDumperServiceProvider;
-use Silex\Provider\SessionServiceProvider;
-use Silex\Provider\SecurityServiceProvider;
+use Silex\Provider\HttpFragmentServiceProvider;
+use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\RememberMeServiceProvider;
+use Silex\Provider\SessionServiceProvider;
+use Silex\Provider\ServiceControllerServiceProvider;
+use Silex\Provider\SecurityServiceProvider;
 use Silex\Provider\TwigServiceProvider;
+use Silex\Provider\VarDumperServiceProvider;
 use Silex\Provider\WebProfilerServiceProvider;
 
 use Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use Saxulum\DoctrineOrmManagerRegistry\Provider\DoctrineOrmManagerRegistryProvider;
 
-use App\Security\TokenAuthenticator;
-use App\Provider\UserProvider;
-
 class ServiceProvider
 {
     public static function register($app)
     {
-        $app->register(new MonologServiceProvider());
-        $app->register(new DoctrineServiceProvider());
-        $app->register(new RoutingServiceProvider());
+        /*
         $app->register(new FormServiceProvider());
         $app->register(new CsrfServiceProvider());
-        $app->register(new HttpFragmentServiceProvider());
+        $app->register(new RoutingServiceProvider());
         $app->register(new SwiftmailerServiceProvider());
         $app->register(new SerializerServiceProvider());
-        $app->register(new ServiceControllerServiceProvider());
         $app->register(new LocaleServiceProvider());
 
         $app->register(new TranslationServiceProvider());
@@ -56,15 +52,17 @@ class ServiceProvider
         $app['validator.mapping.class_metadata_factory'] = new \Symfony\Component\Validator\Mapping\Factory\LazyLoadingMetadataFactory(
             new \Symfony\Component\Validator\Mapping\Loader\YamlFileLoader(ROOT_DIR.'etc/validation/validation.yml')
         );
+        */
+
+        $app->register(new DoctrineServiceProvider());
+        $app->register(new HttpFragmentServiceProvider());
+        $app->register(new MonologServiceProvider());
+        $app->register(new ServiceControllerServiceProvider());
 
         $app->register(new HttpCacheServiceProvider(), array(
             'http_cache.cache_dir' => ROOT_DIR.'var/cache/http',
             'http_cache.esi'       => null,
         ));
-
-        if ($app['debug']) {
-            $app->register(new VarDumperServiceProvider());
-        }
 
         $app->register(new DoctrineOrmServiceProvider, array(
             'orm.proxies_dir' => ROOT_DIR.'var/cache/proxies/doctrine',
@@ -82,14 +80,6 @@ class ServiceProvider
 
         $app->register(new DoctrineOrmManagerRegistryProvider());
 
-        /**
-         * PdoSessionStorage needs a database table (sessions) with 3 columns:
-         *
-         * session_id:       ID column       (VARCHAR(255) or larger)
-         * session_value:    Value column    (TEXT or CLOB)
-         * session_lifetime: Lifetime column (INTEGER)
-         * session_time:     Time column     (INTEGER)
-         */
         $app->register(new SessionServiceProvider(), array(
             'session.storage.options' => array(
                 'name' => 'silex',
@@ -103,15 +93,6 @@ class ServiceProvider
             );
         };
 
-        /**
-         * Table users:
-         *
-         * id:       INTEGER PRIMARY KEY
-         * username: VARCHAR(50) UNIQUE
-         * email:    VARCHA(100) UNIQUE
-         * password: VARCHAR(255)
-         * roles:    VARCHAR(255)
-         */
         $app->register(new SecurityServiceProvider(), array(
             'security.firewalls' => array(
                 'admin' => array(
@@ -152,6 +133,8 @@ class ServiceProvider
         ));
 
         if ($app['debug']) {
+            $app->register(new VarDumperServiceProvider());
+
             $app->register(new WebProfilerServiceProvider(), array(
                 'profiler.cache_dir' => ROOT_DIR.'var/cache/profiler',
             ));

@@ -31,8 +31,17 @@ class Application extends SilexApplication
 
         $app['asset_path'] = baseurl();
 
+        /*
+         * https://github.com/dflydev/dflydev-doctrine-orm-service-provider#why-arent-my-annotations-classes-being-found
+         * See src/App/ServiceProvider.php
+         */
         $loader = require ROOT_DIR . 'vendor/autoload.php';
         \Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
+        
+        /* Serializing */
+        $encoders = array(new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $app['serializer'] = new Serializer($normalizers, $encoders);
 
         $app = ServiceProvider::register($app);
         $app = Route::register($app);

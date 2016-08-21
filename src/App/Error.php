@@ -20,6 +20,8 @@ class Error
         }
         
         $app->error(function (\Exception $e, Request $request, $code) use ($app) {
+            // return $app->json(array('error' => $e->getMessage()), $code);
+            
             if ($app['debug']) {
                 return;
             }

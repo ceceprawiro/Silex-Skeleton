@@ -5,7 +5,6 @@ use Silex\Provider\FormServiceProvider;
 use Silex\Provider\CsrfServiceProvider;
 use Silex\Provider\RoutingServiceProvider;
 use Silex\Provider\SwiftmailerServiceProvider;
-use Silex\Provider\SerializerServiceProvider;
 use Silex\Provider\LocaleServiceProvider;
 use Silex\Provider\TranslationServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
@@ -16,6 +15,7 @@ use Silex\Provider\HttpCacheServiceProvider;
 use Silex\Provider\HttpFragmentServiceProvider;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\RememberMeServiceProvider;
+use Silex\Provider\SerializerServiceProvider;
 use Silex\Provider\SessionServiceProvider;
 use Silex\Provider\ServiceControllerServiceProvider;
 use Silex\Provider\SecurityServiceProvider;
@@ -35,7 +35,6 @@ class ServiceProvider
         $app->register(new CsrfServiceProvider());
         $app->register(new RoutingServiceProvider());
         $app->register(new SwiftmailerServiceProvider());
-        $app->register(new SerializerServiceProvider());
         $app->register(new LocaleServiceProvider());
 
         $app->register(new TranslationServiceProvider());
@@ -57,6 +56,7 @@ class ServiceProvider
         $app->register(new DoctrineServiceProvider());
         $app->register(new HttpFragmentServiceProvider());
         $app->register(new MonologServiceProvider());
+        $app->register(new SerializerServiceProvider());
         $app->register(new ServiceControllerServiceProvider());
 
         $app->register(new HttpCacheServiceProvider(), array(

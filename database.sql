@@ -28,9 +28,9 @@ CREATE TABLE people (
     PRIMARY KEY (id)
 ) DEFAULT CHARSET=utf8;
 
-INSERT INTO users (username, email, password, roles) VALUES
-('admin', 'admin@silex.local', '$2a$08$jHZj/wJfcVKlIwr5AvR78euJxYK7Ku5kURNhNx.7.CSIJ3Pq6LEPC', 'ROLE_ADMIN'),
-('foo', 'foo@silex.local', '$2y$10$3i9/lVd8UOFIJ6PAMFt8gu3/r5g0qeCJvoSlLCsvMTythye19F77a', 'ROLE_USER');
+INSERT INTO users (username, email, password, roles, is_active) VALUES
+('admin', 'admin@silex.local', '$2a$08$jHZj/wJfcVKlIwr5AvR78euJxYK7Ku5kURNhNx.7.CSIJ3Pq6LEPC', 'ROLE_ADMIN', 1),
+('foo', 'foo@silex.local', '$2y$10$3i9/lVd8UOFIJ6PAMFt8gu3/r5g0qeCJvoSlLCsvMTythye19F77a', 'ROLE_USER', 0);
 
 INSERT INTO people (name, address) VALUES
 ('Travis King','52926 Harvey Shore Apt. 190 Hicklemouth, MS 82405'),

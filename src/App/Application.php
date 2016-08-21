@@ -37,11 +37,6 @@ class Application extends SilexApplication
          */
         $loader = require ROOT_DIR . 'vendor/autoload.php';
         \Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
-        
-        /* Serializing */
-        $encoders = array(new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
-        $app['serializer'] = new Serializer($normalizers, $encoders);
 
         $app = ServiceProvider::register($app);
         $app = Route::register($app);

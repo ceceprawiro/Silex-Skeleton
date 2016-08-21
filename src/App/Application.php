@@ -34,8 +34,8 @@ class Application extends SilexApplication
         $loader = require ROOT_DIR . 'vendor/autoload.php';
         \Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
-        $app = Error::register($app);
         $app = ServiceProvider::register($app);
         $app = Route::register($app);
+        $app = Error::register($app);
     }
 }
